@@ -5,7 +5,7 @@ This project provides a working Chatbot example using [Theta Edge Cloud](https:/
 
 ## Getting Started
 
-1. Configure your chatbot by editing the varibles in the file `.local.env`. See Prerequisites if you don't have an API URL.
+1. Configure your chatbot by editing the varibles in the file `.local.env`. See [Prerequisites](https://github.com/thetatoken/theta-chatbot-example/blob/main/README.md#prerequisites) if you don't have an API URL.
 ```bash
 VITE_CHATBOT_API_URL : the inference endpoint you generated when you deployed a Llama-3 model on Theta Edge Cloud.
 VITE_CHATBOT_INSTRUCTIONS : describes your chatbot intended functionality
