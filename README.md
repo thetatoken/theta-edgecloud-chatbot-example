@@ -16,7 +16,7 @@ This project provides a working Chatbot example using [Theta Edge Cloud](https:/
 
 2. Replace other variable from the same file according to your chatbot's intended functionality. This step tailors the chatbot's initial setup and default messages to fit your specific use case.
 
-3. Finally, the following commands to install the project dependencies and start it locally:
+3. Finally, run the following commands to install the project dependencies and start it locally:
    ```bash
    npm install
    npm run dev
