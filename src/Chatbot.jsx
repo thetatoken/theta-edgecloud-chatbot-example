@@ -82,8 +82,6 @@ export const Chatbot = () => {
         }
     }
 
-    console.log('render')
-    console.log(messages)
     return (
         <div className="Chatbot">
             <div className={"Chatbot__chatbox"}>
