@@ -21,5 +21,7 @@ This project provides a working Chatbot example using [Theta Edge Cloud](https:/
    npm install
    npm run dev
    ```
-   
+
+## Preview
+
 ![screenshot](https://github.com/thetatoken/chatbot-example/assets/601861/aa9371ae-2e7b-4a83-8b48-c08050e6a5d5)
