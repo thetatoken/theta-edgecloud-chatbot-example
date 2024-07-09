@@ -41,8 +41,6 @@
     text-align: left;
     font-weight: 400;
     white-space: pre-wrap;
-
-
 }
 
 .ChatbotMessage--user {
@@ -68,7 +66,6 @@
 
 .Chatbot__form {
     display: flex;
-    background-color: #fff;
     border-top: 1px solid lightgrey;
     padding-top: 1rem;
     position: relative;
@@ -106,13 +103,12 @@
 .Chatbot__InputActions {
     display: flex;
     position: absolute;
-    top: -40px;
+    top: -38px;
     align-items: center;
     gap: 10px;
     color: #007AFF;
-    padding-top: 10px;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding: 6px 10px;
+
     background: #f9f9f9;
 }
 

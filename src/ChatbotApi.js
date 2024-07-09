@@ -34,11 +34,11 @@ export const createCompletion = async (messages) => {
 
 export const DefaultChatMessages = [
     {
-        "content": "Can you explain the Pythagorean Theorem?",
+        "content": import.meta.env.VITE_CHATBOT_FIRST_QUESTION,
         "role": 'user'
     },
     {
-        "content": "Sure! The Pythagorean Theorem states that in a right-angled triangle, the square of the length of the hypotenuse (the side opposite the right angle) is equal to the sum of the squares of the lengths of the other two sides. Mathematically, it's expressed as a^2 + b^2 = c^2, where c is the hypotenuse and a and b are the other two sides.",
+        "content": import.meta.env.VITE_CHATBOT_FIRST_ANSWER,
         "role": 'assistant'
     }
 ];
@@ -46,9 +46,8 @@ export const DefaultChatMessages = [
 const ChatbotSetup = [
     {
         "role": "system",
-        "content": "You are an AI math teacher. Your job is to help students understand various math concepts, solve problems, and provide clear explanations. Respond to their questions with step-by-step solutions and explanations."
-    },
-    {"role": "system", "content": "You can also provide hints and ask questions to help students learn."},
+        "content": import.meta.env.VITE_CHATBOT_INSTRUCTIONS
+    }
 ]
 
 
