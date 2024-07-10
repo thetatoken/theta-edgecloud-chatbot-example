@@ -1,10 +1,13 @@
 import {useEffect, useRef, useState} from "react";
 import './Chatbot.css'
 import {BsEraser} from "react-icons/bs";
-import {IoArrowDown, IoArrowUp, IoCopyOutline, IoRefresh} from "react-icons/io5";
+import {IoArrowDown, IoArrowUp} from "react-icons/io5";
 import {createCompletion, DefaultChatMessages} from "./ChatbotApi.js";
+import {LoadingMessage} from "./components/LoadingMessage.jsx";
+import {ChatMessage} from "./components/ChatMessage.jsx";
 
 export const Chatbot = () => {
+
     const [loading, setLoading] = useState(false);
     const [textareaValue, setTextareaValue] = useState('')
     const [messages, setMessages] = useState(DefaultChatMessages);
@@ -17,16 +20,18 @@ export const Chatbot = () => {
             {content: textareaValue, role: 'user'}];
         setMessages(updatedMessages);
 
+        setTextareaValue('')
+        setLoading(true)
+
         try {
-            setTextareaValue('')
-            setLoading(true)
             const response = await createCompletion(updatedMessages);
 
             const assistantResponse = response ?? "We couldn't generate a response, please try again later";
-            setMessages(messages => [...messages, { content: assistantResponse, role: 'assistant' }]);
+            setMessages(messages => [...messages, {content: assistantResponse, role: 'assistant'}]);
         } catch (e) {
             console.log(e)
         }
+
         setLoading(false)
     };
 
@@ -63,7 +68,7 @@ export const Chatbot = () => {
 
             const assistantResponse = response ?? "We couldn't generate a response, please try again later";
             setMessages(messages => [...messages.slice(0, index),
-                { content: assistantResponse, role: 'assistant' },
+                {content: assistantResponse, role: 'assistant'},
                 ...messages.slice(index + 1)
             ]);
 
@@ -86,14 +91,14 @@ export const Chatbot = () => {
         <div className="Chatbot">
             <div className={"Chatbot__chatbox"}>
                 <div ref={chatboxRef} className="Chatbot__messages">
-                    {messages.map((message, index) => {
-                        return (
-                            <ChatMessage key={index} index={index} message={message}
-                                         onRegenerate={regenerateMessage}/>
-                        )
-                    })}
+
+                    {messages.map((message, index) =>
+                        <ChatMessage key={index} index={index} message={message}
+                                     onRegenerate={regenerateMessage}/>
+                    )}
+
                     {loading && (
-                        <LoadingMessage />
+                        <LoadingMessage/>
                     )}
 
                 </div>
@@ -113,7 +118,6 @@ export const Chatbot = () => {
                               onKeyDown={onKeyDown}
                               placeholder="Type something... Enter to send."/>
 
-
                     <button
                         type="submit"
                         className="Chatbot__button"
@@ -127,43 +131,3 @@ export const Chatbot = () => {
     );
 }
 
-
-const LoadingMessage = () => {
-    return (
-        <div className="ChatbotMessageContainer">
-            <div className="ChatbotMessage ChatbotMessage--assistant">
-                <div className={"loader"}/>
-            </div>
-        </div>
-    )
-}
-
-const ChatMessage = ({message, index, onRegenerate}) => {
-
-    const onCopy = (e) => {
-        e.stopPropagation();
-        navigator.clipboard.writeText(message.content);
-    }
-
-    const onRegenerateClicked = (e) => {
-        e.stopPropagation();
-        onRegenerate(message, index);
-    }
-
-    if (message.role === 'loading') {
-        return (<LoadingMessage/>)
-    }
-
-    return (
-        <div className="ChatbotMessageContainer">
-            <div className={`ChatbotMessage ChatbotMessage--${message.role}`}>
-                {message.content}
-                <div className={`ChatbotMessage__actions ChatbotMessage__actions--${message.role}`}>
-                    <div onClick={onCopy}><IoCopyOutline className={"Chatbot__Icon"}/></div>
-                    {message.role === 'assistant' && <div onClick={onRegenerateClicked}><IoRefresh className={"Chatbot__Icon"}/></div>
-                    }
-                </div>
-            </div>
-        </div>
-    )
-}
