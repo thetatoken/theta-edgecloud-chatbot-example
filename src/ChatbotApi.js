@@ -50,7 +50,7 @@ const ChatbotSetup = [
     }
 ]
 
-
+// Format the response from the chatbot
 function formatChatbotResponse(response) {
     // Split the response into paragraphs by two newlines
     let paragraphs = response.split('\n\n');
