@@ -1,6 +1,6 @@
-# Theta Chatbot Example
+# Theta EdgeCloud Chatbot Example
 
-This project provides a working Chatbot example using [Theta Edge Cloud](https://www.thetaedgecloud.com). It is implemented using React and Vite.<br><br>
+This project provides a working Chatbot example using [ThetaEdge Cloud](https://www.thetaedgecloud.com). It is implemented using React and Vite.<br><br>
 
 
 ## Getting Started
